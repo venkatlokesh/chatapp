@@ -1,1 +1,1 @@
-export { fetchUserProfile,fetchUserActiveChats,fetchUserArchivedChats,fetchUserStats,fetchUserWeeklyStats } from './userAction';
+export { fetchUserProfile,fetchUserActiveChats,fetchUserArchivedChats,fetchUserStats,fetchUserWeeklyStats,fetchUserAdditionalDetails } from './userAction';

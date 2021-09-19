@@ -1,4 +1,4 @@
-import { FETCH_USER_PROFILE,FETCH_USER_ARCHIVED_CHATS,FETCH_USER_ACTIVE_CHATS,FETCH_USER_STATS,FETCH_USER_WEEKLY_STATS } from './userActionTypes';
+import { FETCH_USER_PROFILE,FETCH_USER_ARCHIVED_CHATS,FETCH_USER_ACTIVE_CHATS,FETCH_USER_STATS,FETCH_USER_WEEKLY_STATS,FETCH_USER_ADDITIONAL_DETAILS } from './userActionTypes';
 
 export const fetchUserProfile = () => {
     return {
@@ -27,6 +27,12 @@ export const fetchUserStats = () => {
 export const fetchUserWeeklyStats = () =>{
     return {
         type:FETCH_USER_WEEKLY_STATS
+    }
+}
+
+export const fetchUserAdditionalDetails = () =>{
+    return {
+        type:FETCH_USER_ADDITIONAL_DETAILS
     }
 }
 

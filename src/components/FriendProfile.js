@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
 
 function FriendProfile(props) {
     console.log(props);

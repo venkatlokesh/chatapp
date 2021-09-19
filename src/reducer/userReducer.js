@@ -1,11 +1,11 @@
-import { fetchUser } from "./userAction";
-import { FETCH_USER_PROFILE, FETCH_USER_ARCHIVED_CHATS, FETCH_USER_ACTIVE_CHATS,FETCH_USER_STATS,FETCH_USER_WEEKLY_STATS} from "./userActionTypes";
+import { FETCH_USER_PROFILE, FETCH_USER_ARCHIVED_CHATS, FETCH_USER_ACTIVE_CHATS,FETCH_USER_STATS,FETCH_USER_WEEKLY_STATS,FETCH_USER_ADDITIONAL_DETAILS} from "./userActionTypes";
 const initialState = {
     profileDetails: {},
     activeChats: [],
     archivedChats: [],
     stats:{},
-    weeklyStats:{}
+    weeklyStats:{},
+    additionalProfileDetails:{}
 }
 
 const userReducer = (state = initialState, action) => {
@@ -70,7 +70,16 @@ const userReducer = (state = initialState, action) => {
                     Saturday:130,
                     Sunday:200
                 }
-
+            }
+        case FETCH_USER_ADDITIONAL_DETAILS:
+            return {
+                ...state,
+                additionalDetails:{
+                    email:"BillBradFord@sample.com",
+                    companyName:"sampleCompany",
+                    city:"SampleCity", 
+                    Country:"SampleCountry"
+                }
             }
 
         default:

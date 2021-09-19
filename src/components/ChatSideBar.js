@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchUserProfile, fetchUserActiveChats,fetchUserArchivedChats} from '../reducer';
+import {fetchUserActiveChats,fetchUserArchivedChats} from '../reducer';
 import FriendProfile from './FriendProfile';
 
 function ChatSideBar(props) {
@@ -9,23 +9,20 @@ function ChatSideBar(props) {
     let numOfChats = chats && chats.length;
     const dispatch = useDispatch();
     const [friendProfile,setFriendProfile]=useState([]);
-    // const [isLoading,setIsLoading] =useState(true);
     const [showChats, setShowChats ] = useState(false);
 
     useEffect(() => {
-      if(chatType=="activeChats"){
+      if(chatType==="activeChats"){
         dispatch(fetchUserActiveChats())
         setFriendProfile(chats[0]);
         console.log(friendProfile);
-        // if(friendProfile.length>0){
-        //     setIsLoading(false);
-        // }
       }
       else{
         dispatch(fetchUserArchivedChats())
       }
         console.log(chats[0]);
-    }, [])
+    }, [dispatch])
+    
     const listOfChats = () => {
         console.log(chats)
         setShowChats(!showChats);
@@ -33,7 +30,7 @@ function ChatSideBar(props) {
     return (
         <div>
                  {
-                chatType=="activeChats" ? (
+                chatType==="activeChats" ? (
                     <h1>Active Conversations - {numOfChats}</h1>):(
                     <h1>Archived Conversations - {numOfChats}</h1>)
                 }
