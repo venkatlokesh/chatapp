@@ -2,6 +2,7 @@ import React ,{ useEffect }from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserProfile } from '../reducer'
 import ChatSideBar from './ChatSideBar'
+import UserAnalytics from './UserAnalytics';
 
 function UserProfile() {
     const profileDetails = useSelector(state => state.profileDetails);
@@ -19,7 +20,8 @@ function UserProfile() {
             <h3>{profileDetails.role}</h3>
             <h4>{profileDetails.is_active}</h4>
             <ChatSideBar chatType="activeChats" />
-            {/* <ChatSideBar chatType="archivedChats"/> */}
+            <ChatSideBar chatType="archivedChats"/>
+            <UserAnalytics></UserAnalytics>
         </div>
     )
 }

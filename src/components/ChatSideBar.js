@@ -1,28 +1,35 @@
 import React,{useEffect,useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUserProfile, fetchUserActiveChats,fetchUserArchivedChats} from '../reducer';
+import FriendProfile from './FriendProfile';
 
 function ChatSideBar(props) {
     const {chatType} = props;
-    // const archivedChats = useSelector(state => state.archivedChats);
-    // const activeChats = useSelector(state => state.activeChats);
-    // let numOfactiveChats = activeChats && activeChats.length;
-    // let numOfarchivedChats = archivedChats && archivedChats.length;
-    // let numOfChats = (chatType == "Active" ? numOfactiveChats: numOfarchivedChats)
     const chats = useSelector(state => state[chatType]);
     let numOfChats = chats && chats.length;
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [friendProfile,setFriendProfile]=useState([]);
+    // const [isLoading,setIsLoading] =useState(true);
     const [showChats, setShowChats ] = useState(false);
+
     useEffect(() => {
-        chatType=="activeChats" ?
-        dispatch(fetchUserActiveChats()) :
+      if(chatType=="activeChats"){
+        dispatch(fetchUserActiveChats())
+        setFriendProfile(chats[0]);
+        console.log(friendProfile);
+        // if(friendProfile.length>0){
+        //     setIsLoading(false);
+        // }
+      }
+      else{
         dispatch(fetchUserArchivedChats())
+      }
+        console.log(chats[0]);
     }, [])
     const listOfChats = () => {
         console.log(chats)
-        setShowChats(true);
+        setShowChats(!showChats);
         }
-        console.log(showChats)
     return (
         <div>
                  {
@@ -33,11 +40,12 @@ function ChatSideBar(props) {
             <button onClick={()=>listOfChats()}>^</button>
             {
                 showChats && (
-                    chats.map((chat)=>{
-                        return <li>{chat.name}</li>
+                    chats.map((chat,index)=>{
+                        return <button key={index} onClick={()=>setFriendProfile(chat)}>{chat.name}</button>
                     })
                 )
             }
+             { ( <FriendProfile profile={friendProfile} />)}
         </div>
     )
 }
